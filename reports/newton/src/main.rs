@@ -58,6 +58,7 @@ fn main() {
 
     let target_x = x.last().unwrap();
     let value_at_target = f(target_x);
+    info!(k);
     info!(%target_x);
     info!(%value_at_target);
 }

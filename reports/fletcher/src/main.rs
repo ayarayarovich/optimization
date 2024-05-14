@@ -2,11 +2,11 @@ use nalgebra::Vector2;
 use tracing::info;
 
 fn f(p: &Vector2<f64>) -> f64 {
-    return p.x.powi(2) + 4.0 * p.y.powi(2) + p.x * p.y + p.x;
+    3.0 * p.x.powi(2) + p.y.powi(2) - p.x * p.y + p.x
 }
 
 fn gradf(p: &Vector2<f64>) -> Vector2<f64> {
-    Vector2::new(2.0 * p.x + p.y + 1.0, 8.0 * p.y + p.x)
+    Vector2::new(6.0 * p.x - p.y + 1.0, 2.0 * p.y - p.x)
 }
 
 fn golden_section_search<F: Fn(f64) -> f64>(f: F, mut a: f64, mut b: f64) -> f64 {
@@ -62,4 +62,5 @@ fn main() {
     }
 
     info!("Результат X = {x}");
+    info!("Значение в точке: {}", f(&x));
 }

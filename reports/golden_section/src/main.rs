@@ -2,7 +2,7 @@ use tracing::info;
 
 
 fn f(x: f64) -> f64 {
-  x.powi(2) + 4.0 * x + 6.0
+  x.powi(2) + 4.0 * x + 5.0
 }
 
 fn golden_section_search<F: Fn(f64) -> f64>(f: F, mut a: f64, mut b: f64) -> f64 {
@@ -10,7 +10,9 @@ fn golden_section_search<F: Fn(f64) -> f64>(f: F, mut a: f64, mut b: f64) -> f64
     let gr = (1.0f64 + 5.0f64.sqrt()) / 2.0f64;
     let mut c = b - (b - a) / gr;
     let mut d = a + (b - a) / gr;
+    let mut k = 0;
     while (c - d).abs() > tol {
+        info!("{}", {k += 1; k});
         if f(c) < f(d) {
             b = d;
         } else {
